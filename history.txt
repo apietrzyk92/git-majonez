@@ -1,0 +1,121 @@
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff$ mkdir git-majonez
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff$ cd git-majonez/
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint:   git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint:   git branch -m <name>
+Initialized empty Git repository in /home/apietrzyk/MyStuff/git-majonez/.git/
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ touch main.cpp
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ code .
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git add .
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git commit -m "Initial commit"
+[master (root-commit) b7af20d] Initial commit
+ 1 file changed, 6 insertions(+)
+ create mode 100644 main.cpp
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git add main.cpp
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git commit -m "Farewell changed"
+[master cc19f9d] Farewell changed
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git remote add origin git@github.com:apietrzyk92/git-majonez.git
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git push -u origin master
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (6/6), 591 bytes | 591.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:apietrzyk92/git-majonez.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git branch cs
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git checkout cs
+Switched to branch 'cs'
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git log
+commit cc19f9d9a6818baea96dd53c5d709ad39715bb76 (HEAD -> cs, origin/master, master)
+Author: Adam Pietrzyk <apietrzyk92@gmail.com>
+Date:   Sun Jan 8 13:56:46 2023 +0100
+
+    Farewell changed
+
+commit b7af20ded18805581173a7352939c097df6290ed
+Author: Adam Pietrzyk <apietrzyk92@gmail.com>
+Date:   Sun Jan 8 13:56:08 2023 +0100
+
+    Initial commit
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git reset --hard b7af20ded18805581173a7352939c097df6290ed
+HEAD is now at b7af20d Initial commit
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git log
+commit b7af20ded18805581173a7352939c097df6290ed (HEAD -> cs)
+Author: Adam Pietrzyk <apietrzyk92@gmail.com>
+Date:   Sun Jan 8 13:56:08 2023 +0100
+
+    Initial commit
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git add .
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git commit -m"Greetings"
+[cs 0470d34] Greetings
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git push origin cs
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 333 bytes | 333.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'cs' on GitHub by visiting:
+remote:      https://github.com/apietrzyk92/git-majonez/pull/new/cs
+remote:
+To github.com:apietrzyk92/git-majonez.git
+ * [new branch]      cs -> cs
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git merge cs
+Auto-merging main.cpp
+CONFLICT (content): Merge conflict in main.cpp
+Automatic merge failed; fix conflicts and then commit the result.
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   main.cpp
+
+no changes added to commit (use "git add" and/or "git commit -a")
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git add .
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+        modified:   main.cpp
+
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git commit
+[master 7dc7085] Merge branch 'cs'
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+apietrzyk@DESKTOP-AHUM1GL:~/MyStuff/git-majonez$ touch history.txt

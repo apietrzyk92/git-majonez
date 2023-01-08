@@ -1,6 +1,6 @@
 #include <iostream>
 int main()
 {
-    std::cout << "Goodbay World";
+    std::cout << "Goodbye Coders School";
     return 0;
 }
